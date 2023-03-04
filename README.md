@@ -1,27 +1,55 @@
-# AngularHuskyDemo
+## 📝 Documentation for Angular Demo Project with Husky Integration 🐶
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.4.
+To automate Git hooks in your Angular app, you can use Husky. Here are the steps to integrate Husky into your project:
 
-## Development server
+1. Install Commitizen and cz-conventional-changelog as dev dependencies:
+```
+npm install commitizen cz-conventional-changelog --save-dev
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+2. Add the "commit" script to your package.json file:
+```
+"scripts": {
+  "commit": "cz"
+}
+```
 
-## Code scaffolding
+This will allow you to use Commitizen for creating standardized commit messages.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Install Husky as a dev dependency:
+```
+npm install husky --save-dev
+```
 
-## Build
+4. Run the command to set up Husky in your project:
+```
+npx husky install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+5. Add a "postinstall" script to your package.json file to ensure Husky is installed after node module installation:
+```
+"scripts": {
+  "postinstall": "husky install"
+}
+```
 
-## Running unit tests
+6. Add a "test:headless" script to your package.json file to run tests in a headless browser:
+```
+"scripts": {
+  "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
+}
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+7. Add a pre-commit hook that runs the "test:headless" script by running the following command:
+```
+npx husky add .husky/pre-commit "npm run test:headless"
+```
 
-## Running end-to-end tests
+This will ensure that your tests are run before each commit.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Initialize your commit messages with Commitizen
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To initialize your commit messages with Commitizen, run the following command:
+```
+npm run commit
+```
