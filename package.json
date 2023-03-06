@@ -31,7 +31,6 @@
     "@angular/compiler-cli": "^14.0.0",
     "@types/jasmine": "~4.0.0",
     "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.3",
     "jasmine-core": "~4.1.0",
     "karma": "~6.3.0",
